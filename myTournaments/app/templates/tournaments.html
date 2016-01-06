@@ -1,28 +1,14 @@
+<div ng-init="init()"></div>
 <ion-header-bar class="bar-stable">
     <h1 class="title">My Tournaments</h1>
     <button class="button icon ion-plus-circled"></button>
 </ion-header-bar>
 <ion-content>
-    <div class="list">
-        <a class="item item-thumbnail-left" href="#/tournament/4246">
+    <div class="list" ng-repeat="tournament in tournamentList">
+        <a class="item item-thumbnail-left" href="#/tournament/{{ tournament.Id }}">
             <img src="cover.jpg">
-            <h2>Liga Municipal de Santa Cruz do Sul</h2>
-            <p>Basquete</p>
-        </a>
-        <a class="item item-thumbnail-left" href="#/tournament/74657">
-            <img src="cover.jpg">
-            <h2>Liga Municipal de Porto Alegre</h2>
-            <p>Basquete</p>
-        </a>
-        <a class="item item-thumbnail-left" href="#/tournament/1234">
-            <img src="cover.jpg">
-            <h2>JUGS</h2>
-            <p>Basquete</p>
-        </a>
-        <a class="item item-thumbnail-left" href="#/tournament/3234">
-            <img src="cover.jpg">
-            <h2>Copa RS</h2>
-            <p>Basquete</p>
+            <h2>{{ tournament.Title }}</h2>
+            <p>{{ tournament.Type }}</p>
         </a>
     </div>
 </ion-content>

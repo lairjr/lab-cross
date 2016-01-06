@@ -1,3 +1,4 @@
+<div ng-init="init()"></div>
 <ion-header-bar class="bar-stable">
     <h1 class="title">Schedule of the Tournament {{ tournamentId }}</h1>
     <button class="button icon ion-ios-gear"></button>
@@ -5,35 +6,35 @@
 <ion-content>
     <div class="row">
         <div class="col-20">
-            <button class="button button-dark icon ion-arrow-left-b"></button>
+            <button class="button button-dark icon ion-arrow-left-b" ng-click="priorDate()"></button>
         </div>
         <div class="col text-center">
-            <h4 class="title">27/12/2016</h4>
+            <h4 class="title">{{ availableDateList[currentDateIndex] }}</h4>
         </div>
         <div class="col-20 text-right">
-            <button class="button button-dark icon ion-arrow-right-b"></button>
+            <button class="button button-dark icon ion-arrow-right-b" ng-click="nextDate()"></button>
         </div>
     </div>
-    <div class="list card">
+    <div class="list card" ng-repeat="game in currentGameList">
         <a href="#/game/123" class="item">
             <div class="row row-center">
                 <div class="col text-center">
                     <i class="icon ion-android-expand" style="font-size:60px"></i>
-                    <h2>COS</h2>
+                    <h2>{{ game.HomeTeam.Acronym }}</h2>
                 </div>
                 <div class="col text-center">
-                    <h2>72</h2>
+                    <h2>{{ game.HomeTeam.Score }}</h2>
                 </div>
                 <div class="col text-center">vs</div>
                 <div class="col text-center">
-                    <h2>72</h2>
+                    <h2>{{ game.AwayTeam.Score }}</h2>
                 </div>
                 <div class="col text-center">
                     <i class="icon ion-android-expand" style="font-size:60px"></i>
-                    <h2>SLS</h2>
+                    <h2>{{ game.AwayTeam.Acronym }}</h2>
                 </div>
             </div>
-            <p>Local: Corinthians</p>
+            <p>Local: {{ game.Location }}</p>
         </a>
     </div>
 </ion-content>

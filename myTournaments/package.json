@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
+    "bower": "^1.7.2",
     "cordova": "~4.2.0",
     "elementtree": "0.1.6",
     "glob": "~4.3.5",
