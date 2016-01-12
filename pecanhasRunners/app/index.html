@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
@@ -37,15 +38,26 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/configuration.js"></script>
     <!-- endbuild -->
-  </head>
-  <body ng-app="starter">
+</head>
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
-  </body>
+<body ng-app="pecanhaRunners">
+    <ion-header-bar class="bar-stable">
+        <h1 class="title">Pecanha Runners</h1>
+    </ion-header-bar>
+    <ion-nav-view></ion-nav-view>
+    <ion-footer-bar>
+        <div class="tabs tabs-icon-top">
+            <a class="tab-item" href="#/">
+                <i class="icon ion-person"></i>My Profile
+            </a>
+            <a class="tab-item" href="#/ranking">
+                <i class="icon ion-clipboard"></i>Ranking
+            </a>
+            <a class="tab-item" href="#/settings">
+                <i class="icon ion-gear-a"></i>Settings
+            </a>
+        </div>
+    </ion-footer-bar>
+</body>
+
 </html>
