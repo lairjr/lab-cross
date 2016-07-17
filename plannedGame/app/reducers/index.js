@@ -1,8 +1,3 @@
-const loginReducer = (state = {}, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-}
+import login from './login';
 
-export default { loginReducer };
+export default { login };
