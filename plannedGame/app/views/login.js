@@ -6,9 +6,10 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
+import { connect } from 'react-redux';
 import React from 'react';
 
-const LoginView = () => {
+const LoginView = ({ username }) => {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -73,4 +74,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginView;
+const mapStateToProps = ({ login }) => {
+    return login;
+};
+
+export default connect(mapStateToProps)(LoginView);
