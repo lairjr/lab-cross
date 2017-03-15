@@ -5,6 +5,7 @@ Vagrant.configure(2) do |config|
 
     devEnv.vm.provision "chef_solo" do |chef|
       chef.add_recipe "nodejs"
+      chef.add_recipe "docker"
     end
   end
   # config.vm.provider "virtualbox" do |vb|
