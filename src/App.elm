@@ -1,31 +1,34 @@
 module App exposing (..)
 
-import Html exposing (Html, div, text, program)
+import Html exposing (Html, button, div, text, program)
+import Html.Events exposing (onClick)
 
 -- MODEL
 
-type alias Model = String
+type alias Model = Int
 
 init : (Model, Cmd Msg)
-init = ( "Hello", Cmd.none )
+init = ( 0, Cmd.none )
 
 -- MESSAGES
 
-type Msg = NoOp
+type Msg = Increment Int
 
 -- VIEW
 
 view : Model -> Html Msg
 view model =
   div []
-      [ text model ]
+      [ button [ onClick (Increment 2) ] [ text "+" ]
+      , text (toString model)
+      ]
 
 -- UPDATE
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
   case msg of
-    NoOp -> ( model, Cmd.none )
+    Increment howMuch -> (model + howMuch, Cmd.none )
 
 -- SUBSCRIPTIONS
 
