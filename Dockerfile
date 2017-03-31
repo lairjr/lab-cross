@@ -1,2 +1,2 @@
-FROM node:7.2.0
-RUN npm install -g elm
+FROM kkarczmarczyk/node-yarn
+RUN yarn add global elm

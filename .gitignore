@@ -1,2 +1,4 @@
 .vagrant/
+node_modules/
+src-webserver/node_modules/
 elm-stuff

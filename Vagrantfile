@@ -1,6 +1,7 @@
 Vagrant.configure(2) do |config|
   config.vm.define "devEnv" do |devEnv|
     devEnv.vm.network "forwarded_port", guest: 8000, host: 8080
+    devEnv.vm.network "forwarded_port", guest: 4000, host: 4000
     devEnv.vm.box = "ubuntu/trusty64"
 
     devEnv.vm.provision "chef_solo" do |chef|
