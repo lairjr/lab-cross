@@ -6,3 +6,6 @@ api:
 
 elm-bash:
 	docker run -v /vagrant:/webapp -t -i --rm elm-image /bin/bash
+
+docker-image:
+	docker build -t elm-image .
