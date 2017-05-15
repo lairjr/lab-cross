@@ -1,0 +1,19 @@
+version: '3'
+services:
+  webapp:
+    build: .
+    command: webpack-dev-server --host 0.0.0.0 --port 8000
+    ports:
+    - "8000:8000"
+    volumes:
+    - .:/webapp
+    depends_on:
+      - api
+  api:
+    build: .
+    command: node api.js
+    working_dir: /webapp/src-webserver
+    ports:
+    - "4000:4000"
+    volumes:
+    - .:/webapp
