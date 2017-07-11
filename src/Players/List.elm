@@ -67,6 +67,6 @@ editBtn player =
     a [ class "btn regular"
       , href path
       ]
-      [ i [ class "fa fa-pencil-mr1" ] []
+      [ i [ class "fa fa-pencil mr1" ] []
         , text "Edit"
       ]
