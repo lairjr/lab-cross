@@ -49,6 +49,23 @@ savePlayerCmd player =
   savePlayerRequest player
     |> Http.send Msgs.OnPlayerSave
 
+deletePlayerRequest : Player -> Http.Request Player
+deletePlayerRequest player =
+  Http.request
+    { method = "DELETE"
+    , headers = []
+    , url = savePlayerUrl player.id
+    , body = playerEncoder player |> Http.jsonBody
+    , expect = Http.expectJson playerDecoder
+    , timeout = Nothing
+    , withCredentials = False
+    }
+
+deletePlayerCmd : Player -> Cmd Msg
+deletePlayerCmd player =
+  deletePlayerRequest player
+    |> Http.send Msgs.OnPlayerDelete
+
 playerEncoder : Player -> Encode.Value
 playerEncoder player =
   let

@@ -2,6 +2,7 @@ module Players.List exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (class, href)
+import Html.Events exposing (onClick)
 import Msgs exposing (Msg)
 import Models exposing (Player)
 import RemoteData exposing (WebData)
@@ -63,10 +64,14 @@ editBtn : Player -> Html.Html Msg
 editBtn player =
   let
     path = playerPath player.id
+    message = Msgs.DeletePlayer player
   in
-    a [ class "btn regular"
-      , href path
-      ]
-      [ i [ class "fa fa-pencil mr1" ] []
-        , text "Edit"
+    div []
+      [
+        a [ class "btn regular", href path ]
+          [ i [ class "fa fa-pencil mr1" ] []
+            , text "Edit"
+          ]
+        , a [ class "btn regular", onClick message ]
+            [ i [ class "fa fa-minus-circle" ] [] ]
       ]
