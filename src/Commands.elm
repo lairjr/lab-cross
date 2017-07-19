@@ -8,6 +8,10 @@ import Msgs exposing (Msg)
 import Models exposing (PlayerId, Player)
 import RemoteData
 
+alwaysExpect : a -> Http.Expect a
+alwaysExpect =
+     Http.expectStringResponse << always << Ok
+
 fetchPlayers : Cmd Msg
 fetchPlayers =
   Http.get fetchPlayersUrl playersDecoder
@@ -49,21 +53,21 @@ savePlayerCmd player =
   savePlayerRequest player
     |> Http.send Msgs.OnPlayerSave
 
-deletePlayerRequest : Player -> Http.Request Player
+deletePlayerRequest : Player -> Http.Request PlayerId
 deletePlayerRequest player =
   Http.request
     { method = "DELETE"
     , headers = []
     , url = savePlayerUrl player.id
-    , body = playerEncoder player |> Http.jsonBody
-    , expect = Http.expectJson playerDecoder
+    , body = Http.emptyBody
+    , expect = alwaysExpect player.id
     , timeout = Nothing
     , withCredentials = False
     }
 
 deletePlayerCmd : Player -> Cmd Msg
 deletePlayerCmd player =
-  deletePlayerRequest player
+ deletePlayerRequest player
     |> Http.send Msgs.OnPlayerDelete
 
 playerEncoder : Player -> Encode.Value

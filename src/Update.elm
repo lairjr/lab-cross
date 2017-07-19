@@ -1,8 +1,10 @@
 module Update exposing (..)
 
 import Commands exposing (deletePlayerCmd, savePlayerCmd)
+import Debug exposing (log)
+import Http
 import Msgs exposing (Msg(..))
-import Models exposing (Model, Player)
+import Models exposing (Model, Player, PlayerId)
 import RemoteData
 import Routing exposing (parseLocation)
 
@@ -20,7 +22,7 @@ update msg model =
         Msgs.DeletePlayer player ->
           ( model, deletePlayerCmd player )
         Msgs.OnPlayerDelete (Ok player) ->
-          ( model, Cmd.none )
+          ( removePlayer model player, Cmd.none )
         Msgs.OnPlayerDelete (Err error) ->
           ( model, Cmd.none )
         Msgs.OnPlayerSave (Ok player) ->
@@ -40,5 +42,13 @@ updatePlayer model updatedPlayer =
     updatePlayerList players = List.map pick players
     updatedPlayers =
       RemoteData.map updatePlayerList model.players
+  in
+    { model | players = updatedPlayers }
+
+removePlayer : Model -> PlayerId -> Model
+removePlayer model removedPlayerId =
+  let
+    updatePlayerList players = List.filter (\p -> p.id /= removedPlayerId) players
+    updatedPlayers = RemoteData.map updatePlayerList model.players
   in
     { model | players = updatedPlayers }
