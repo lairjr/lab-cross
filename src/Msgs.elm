@@ -10,6 +10,8 @@ type Msg
     | OnLocationChange Location
     | ChangeLevel Player Int
     | ChangeLevelNoRequest Player Int
+    | ChangeNameNoRequest Player String
     | DeletePlayer Player
     | OnPlayerDelete (Result Http.Error PlayerId)
     | OnPlayerSave (Result Http.Error Player)
+    | SaveNewPlayer Player

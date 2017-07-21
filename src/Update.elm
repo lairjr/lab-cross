@@ -1,6 +1,6 @@
 module Update exposing (..)
 
-import Commands exposing (deletePlayerCmd, savePlayerCmd)
+import Commands exposing (deletePlayerCmd, putPlayerCmd, savePlayerCmd)
 import Msgs exposing (Msg(..))
 import Models exposing (Model, Player, PlayerId)
 import RemoteData
@@ -20,6 +20,9 @@ update msg model =
         Msgs.ChangeLevelNoRequest player howMuch ->
           let updatedPlayer = { player | level = player.level + howMuch }
           in ( { model | newPlayer = updatedPlayer }, Cmd.none )
+        Msgs.ChangeNameNoRequest player name ->
+          let updatedPlayer = { player | name = name }
+          in ( { model | newPlayer = updatedPlayer }, Cmd.none )
         Msgs.DeletePlayer player ->
           ( model, deletePlayerCmd player )
         Msgs.OnPlayerDelete (Ok player) ->
@@ -30,6 +33,8 @@ update msg model =
           ( updatePlayer model player, Cmd.none )
         Msgs.OnPlayerSave (Err error) ->
           ( model, Cmd.none )
+        Msgs.SaveNewPlayer player ->
+          ( model, putPlayerCmd player )
 
 updatePlayer : Model -> Player -> Model
 updatePlayer model updatedPlayer =

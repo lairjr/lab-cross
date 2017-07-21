@@ -1,8 +1,8 @@
 module Players.New exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (class, value, href)
-import Html.Events exposing (onClick)
+import Html.Attributes exposing (class, value, href, placeholder)
+import Html.Events exposing (onClick, onInput)
 import Msgs exposing (Msg)
 import Models exposing (Player)
 import Routing exposing (playersPath)
@@ -32,7 +32,9 @@ form : Player -> Html Msg
 form player =
   div [ class "m3" ]
       [ h1 [] [ text player.name ]
+      , input [ placeholder "Nome", onInput (Msgs.ChangeNameNoRequest player), value player.name ] []
       , formLevel player
+      , button [ onClick (Msgs.SaveNewPlayer player) ] [ text "Salvar" ]
       ]
 
 formLevel : Player -> Html Msg
