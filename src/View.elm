@@ -5,6 +5,7 @@ import Models exposing (Model, PlayerId)
 import Msgs exposing (Msg)
 import Players.Edit
 import Players.List
+import Players.New
 import RemoteData
 
 view : Model -> Html Msg
@@ -15,6 +16,9 @@ view model =
 page : Model -> Html Msg
 page model =
   case model.route of
+    Models.NewPlayerRoute ->
+      Players.New.view model.newPlayer
+
     Models.PlayersRoute ->
       Players.List.view model.players
 
