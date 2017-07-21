@@ -1,4 +1,5 @@
 .vagrant/
 node_modules/
 src-webserver/node_modules/
+src-webserver/db.json
 elm-stuff
