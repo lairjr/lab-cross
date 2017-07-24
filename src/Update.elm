@@ -1,6 +1,6 @@
 module Update exposing (..)
 
-import Commands exposing (deletePlayerCmd, putPlayerCmd, savePlayerCmd)
+import Commands exposing (deletePlayerCmd, postPlayerCmd, savePlayerCmd)
 import Msgs exposing (Msg(..))
 import Models exposing (Model, Player, PlayerId)
 import RemoteData
@@ -34,7 +34,7 @@ update msg model =
         Msgs.OnPlayerSave (Err error) ->
           ( model, Cmd.none )
         Msgs.SaveNewPlayer player ->
-          ( model, putPlayerCmd player )
+          ( model, postPlayerCmd player )
 
 updatePlayer : Model -> Player -> Model
 updatePlayer model updatedPlayer =

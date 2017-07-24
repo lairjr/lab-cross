@@ -70,8 +70,8 @@ deletePlayerCmd player =
  deletePlayerRequest player
     |> Http.send Msgs.OnPlayerDelete
 
-putPlayerRequest : Player -> Http.Request Player
-putPlayerRequest player =
+postPlayerRequest : Player -> Http.Request Player
+postPlayerRequest player =
   Http.request
     { method = "POST"
     , headers = []
@@ -82,9 +82,9 @@ putPlayerRequest player =
     , withCredentials = False
     }
 
-putPlayerCmd : Player -> Cmd Msg
-putPlayerCmd player =
-  putPlayerRequest player
+postPlayerCmd : Player -> Cmd Msg
+postPlayerCmd player =
+  postPlayerRequest player
     |> Http.send Msgs.OnPlayerSave
 
 playerEncoder : Player -> Encode.Value
