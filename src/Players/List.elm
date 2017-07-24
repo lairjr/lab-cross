@@ -6,7 +6,7 @@ import Html.Events exposing (onClick)
 import Msgs exposing (Msg)
 import Models exposing (Player)
 import RemoteData exposing (WebData)
-import Routing exposing (playerPath)
+import Routing exposing (newPlayerPath, playerPath)
 
 view : WebData (List Player) -> Html Msg
 view response =
@@ -33,7 +33,9 @@ maybeList response =
 nav : Html Msg
 nav =
   div [ class "clearfix mb2 white bg-black" ]
-      [ div [ class "left p2" ] [ text "Players" ] ]
+      [ div [ class "left p2" ] [ text "Players" ]
+      , a [ class "right p2", href newPlayerPath ] [ text "New" ]
+      ]
 
 list : List Player -> Html Msg
 list players =
