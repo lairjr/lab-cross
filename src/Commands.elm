@@ -6,6 +6,7 @@ import Json.Decode.Pipeline exposing (decode, required)
 import Json.Encode as Encode
 import Msgs exposing (Msg)
 import Models exposing (PlayerId, Player)
+import Navigation
 import RemoteData
 
 alwaysExpect : a -> Http.Expect a
@@ -85,7 +86,7 @@ postPlayerRequest player =
 postPlayerCmd : Player -> Cmd Msg
 postPlayerCmd player =
   postPlayerRequest player
-    |> Http.send Msgs.OnPlayerSave
+    |> Http.send Msgs.OnNewPlayerSave
 
 playerEncoder : Player -> Encode.Value
 playerEncoder player =
@@ -97,3 +98,7 @@ playerEncoder player =
       ]
   in
     Encode.object attributes
+
+navigateTo : String -> Cmd Msg
+navigateTo url =
+  Navigation.newUrl url

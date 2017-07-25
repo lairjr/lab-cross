@@ -1,10 +1,10 @@
 module Update exposing (..)
 
-import Commands exposing (deletePlayerCmd, postPlayerCmd, savePlayerCmd)
+import Commands exposing (deletePlayerCmd, fetchPlayers, navigateTo, postPlayerCmd, savePlayerCmd)
 import Msgs exposing (Msg(..))
 import Models exposing (Model, Player, PlayerId)
 import RemoteData
-import Routing exposing (parseLocation)
+import Routing exposing (parseLocation, playersPath)
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -32,6 +32,10 @@ update msg model =
         Msgs.OnPlayerSave (Ok player) ->
           ( updatePlayer model player, Cmd.none )
         Msgs.OnPlayerSave (Err error) ->
+          ( model, Cmd.none )
+        Msgs.OnNewPlayerSave (Ok player) ->
+          ( model, Cmd.batch [(navigateTo playersPath), fetchPlayers] )
+        Msgs.OnNewPlayerSave (Err error) ->
           ( model, Cmd.none )
         Msgs.SaveNewPlayer player ->
           ( model, postPlayerCmd player )
