@@ -10,9 +10,16 @@ type alias Model =
 
 initialModel : Route -> Model
 initialModel route =
-  { newPlayer = { id = "", name = "", level = 0 }
+  { newPlayer = initNewPlayer
   , players = RemoteData.Loading
   , route = route
+  }
+
+initNewPlayer : Player
+initNewPlayer =
+  { id = ""
+  , name = ""
+  , level = 0
   }
 
 type Route
