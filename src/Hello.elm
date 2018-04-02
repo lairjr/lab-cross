@@ -22,7 +22,7 @@ init =
 
 socketUrl : String
 socketUrl =
-    "ws://echo.websocket.org"
+    "ws://localhost:3000/connect"
 
 
 
